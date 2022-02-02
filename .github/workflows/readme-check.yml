@@ -16,8 +16,8 @@ jobs:
         for i in "${result[@]}"
         do
           echo $i
-          HTTP_CODE=`curl --write-out "%{http_code}\n" "https://github.com/OpenDRR/${i}/blob/main/README.md" --output /dev/null --silent`
-          echo $HTTP_CODE
+          code=`curl --write-out "%{http_code}\n" "https://github.com/OpenDRR/${i}/blob/main/README.md" --output /dev/null --silent`
+          echo $code
         done
           
       #HTTP_CODE2=`curl --write-out "%{http_code}\n" "https://github.com/OpenDRR/${i}/blob/main/LISEZMOI.md" --output /dev/null --silent`
