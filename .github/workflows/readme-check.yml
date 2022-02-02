@@ -13,5 +13,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         USER: ${{ github.actor }}
       run: |
-        result=`curl -u $USER:$GITHUB_TOKEN https://api.github.com/orgs/damonu2/repos?type=all`
+        result=`curl -u $USER:$GITHUB_TOKEN https://api.github.com/orgs/DamonU2/repos?type=all`
         echo $result
