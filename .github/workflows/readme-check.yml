@@ -13,5 +13,5 @@ jobs:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
         USER: ${{ github.actor }}
       run: |
-        result=`curl -I -i -u $USERNAME:$TOKEN -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos`
+        result=`curl -I -i -u $USERNAME:$TOKEN -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos/?per_page=100`
         echo $result
