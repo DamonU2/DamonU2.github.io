@@ -9,9 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get list of repos
+      with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       env:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
         USER: ${{ github.actor }}
       run: |
-        result=`curl -H "Accept: application/vnd.github.v3+json" https://$TOKEN@api.github.com/orgs/OpenDRR/repos?per_page=100`
+        result=`curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100`
         echo $result
