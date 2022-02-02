@@ -15,7 +15,7 @@ jobs:
         result=`curl -H "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100 | jq .[].name | tr -d \"`
         for i in "${result[@]}"
         do
-          code=`curl --write-out "%{http_code}\n" "https://github.com/OpenDRR/${i}/blob/main/README.md" --output /dev/null --silent`
+          code=`curl --write-out "%{http_code}\n" --output /dev/null --silent "https://github.com/OpenDRR/${i}/blob/main/README.md"`
           echo $i
           echo $code
         done
