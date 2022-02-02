@@ -1,0 +1,17 @@
+name: Check for README.md and LISEZMOI.md
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  readme-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get list of repos
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        USER: ${{ github.actor }}
+      run: |
+        result=`curl -u $USER https://api.github.com/orgs/damonu2/repos?type=all`
+        echo $result
