@@ -8,9 +8,12 @@ jobs:
   readme-check:
     runs-on: ubuntu-latest
     steps:
+    - name: Install jq
+      run: |
+        sudo apt-get install jq
     - name: Get list of repos
       env:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        result=`curl --header "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100`
+        result=`curl --header "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100 | jq .name`
         echo $result
