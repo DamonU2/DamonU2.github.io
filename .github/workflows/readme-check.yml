@@ -13,5 +13,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         USER: ${{ github.actor }}
       run: |
-        result=`curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/DamonU2/repos`
+        result=`curl -H "Accept: application/vnd.github.v3+json" https://api.github.com/user/DamonU2/repos`
         echo $result
