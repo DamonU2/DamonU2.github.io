@@ -21,4 +21,6 @@ jobs:
           echo $RESPONSE
           FRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/LISEZMOI.md --write-out "%{http_code}\n" --output /dev/null --silent`
           echo $FRESPONSE
+          LRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/LICENSE --write-out "%{http_code}\n" --output /dev/null --silent`
+          echo $LRESPONSE
         done
