@@ -12,7 +12,7 @@ jobs:
       env:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        result=`curl -H "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100 | jq .[].name | tr -d \"`
+        result=`curl -H "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100&type=all | jq .[].name | tr -d \"`
         results=($result)
         for REPO in "${results[@]}"
         do
@@ -22,4 +22,3 @@ jobs:
           FRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/LISEZMOI.md --write-out "%{http_code}\n" --output /dev/null --silent`
           echo $FRESPONSE
         done
-        
