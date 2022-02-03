@@ -17,7 +17,7 @@ jobs:
         for REPO in "${results[@]}"
         do
           echo $REPO
-          RESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
+          RESPONSE=`curl -i https://api.github.com/repos/OpenDRR/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
           echo $RESPONSE
           FRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/LISEZMOI.md --write-out "%{http_code}\n" --output /dev/null --silent`
           echo $FRESPONSE
