@@ -14,12 +14,12 @@ jobs:
       run: |
         result=`curl -H "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/orgs/OpenDRR/repos?per_page=100 | jq .[].name | tr -d \"`
         results=($result)
-        for REPO in "${result[@]}"
+        for REPO in "${results[@]}"
         do
           echo $REPO
-          echo https://api.github.com/repos/OpenDRR/$REPO/contents/README.md
-          RESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
-          echo $RESPONSE
+      #echo https://api.github.com/repos/OpenDRR/$REPO/contents/README.md
+      #RESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/OpenDRR/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
+      #echo $RESPONSE
         done
           
       #HTTP_CODE2=`curl --output /dev/null --silent --write-out "%{http_code}\n" https://api.github.com/repos/OpenDRR/$i/contents/LISEZMOI.md`
