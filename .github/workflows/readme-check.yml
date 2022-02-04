@@ -10,11 +10,11 @@ jobs:
     steps:
     - name: Get list of repos
       env:
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TOKEN: ${{ secrets.MY_PAT }}
       run: |
         result=`curl -H "Authorization: $TOKEN" -H "Accept: application/vnd.github.v3+json" https://api.github.com/users/DamonU2/repos?per_page=100 | jq .[].name | tr -d \"`
         results=($result)
-        for REPO in "${results[0]}"
+        for REPO in "${results[@]}"
         do
           RESPONSE=`curl -i https://api.github.com/repos/DamonU2/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
           FRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/DamonU2/$REPO/contents/LISEZMOI.md --write-out "%{http_code}\n" --output /dev/null --silent`
