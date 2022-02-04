@@ -16,9 +16,19 @@ jobs:
         results=($result)
         for REPO in "${results[@]}"
         do
-          echo $REPO
           RESPONSE=`curl -i https://api.github.com/repos/DamonU2/$REPO/contents/README.md --write-out "%{http_code}\n" --output /dev/null --silent`
-          echo $RESPONSE
           FRESPONSE=`curl -i -H "Authorization: $TOKEN" https://api.github.com/repos/DamonU2/$REPO/contents/LISEZMOI.md --write-out "%{http_code}\n" --output /dev/null --silent`
-          echo $FRESPONSE
+          if [ $RESPONSE == 404 ] && [ $FRESPONSE == 404 ]
+          then
+            curl -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/DamonU2/$REPO/issues -d '{"title":"Add README.md and LISEZMOI.md files"}'
+            echo Issue created in $REPO repo
+          elif [ $FRESPONSE == 404 ]
+          then
+            curl -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/DamonU2/$REPO/issues -d '{"title":"Add LISEZMOI.md file"}'
+            echo Issue created in $REPO repo
+          elif [ $RESPONSE == 404 ]
+          then
+            curl -X POST -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/DamonU2/$REPO/issues -d '{"title":"Add README.md file"}'
+            echo Issue created in $REPO repo
+          fi
         done
